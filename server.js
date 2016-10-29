@@ -49,19 +49,20 @@ var tables = [
   {name: "tomtom",
   phone: "9999999999",
   email: "tomtom@tomtom.com",
+<<<<<<< HEAD
   customerID: 3},
   {name: "tom2",
   phone: "1234567890",
   email: "tom@tom.com",
-  customerID: 1},
+  customerID: 4},
   {name: "matt2",
   phone: "1555567890",
   email: "matt@matt.com",
-  customerID: 2},
+  customerID: 5},
   {name: "tomtom2",
   phone: "9999999999",
   email: "tomtom@tomtom.com",
-  customerID: 3}
+  customerID: 6}
   ];
 
 app.get('/api/tables', function (req, res) {
@@ -73,7 +74,25 @@ app.get('/api/tables', function (req, res) {
 // reserve API call
 app.post('/api/reserve', function (req, res) {
 	console.log('reserve request submitted');
-	console.log(req);
+	console.log(req.body);
+
+  var newReservation = req.body;
+
+  tables.push(newReservation);
+
+  //console.log(tables);
+
+  // Check if user is in the first 5 in list
+  var isBooked;
+  if(tables.length <= 5){
+    isBooked = true;
+  }
+  else{
+    isBooked = false;
+  }
+
+  res.json(isBooked);
+
 });
 
 

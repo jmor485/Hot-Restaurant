@@ -109,9 +109,9 @@
 		// We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
 		var currentURL = window.location.origin;
 
-	    $.post(currentURL + "/api/tables", newReservation,
+	    $.post(currentURL + "/api/reserve", newReservation,
 	    function(data){
-
+	    	console.log(data + "hello")
 	    	// If a table is available... tell user they are booked.
 	    	if(data == true){
 	    		alert("Yay! You are officially booked!")
@@ -123,7 +123,7 @@
 	    	}
 
 	    	// Clear the form when submitting
-    		$('#reserve_name').val("");
+    	$('#reserve_name').val("");
 			$('#reserve_phone').val("");
 			$('#reserve_email').val("");
 			$('#reserve_uniqueID').val("");
