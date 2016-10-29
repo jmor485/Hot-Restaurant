@@ -61,7 +61,17 @@ app.get('/api/tables', function (req, res) {
 // reserve API call
 app.post('/api/reserve', function (req, res) {
 	console.log('reserve request submitted');
-	console.log(req);
+	console.log(req.body);
+
+  var newReservation = req.body;
+
+  tables.push(newReservation)
+
+  console.log(tables);
+
+  res.json(newReservation);
+
+
 });
 
 // Starts the server to begin listening
