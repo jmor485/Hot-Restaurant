@@ -54,7 +54,7 @@
 	    <footer class="footer">
 	      <div class="container">
 	      	<p>Control Panel</p>
-	        <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
+	        <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a></p>
 	      </div>
 	    </footer>
 
@@ -62,24 +62,15 @@
 
 </body>
 
-
-<!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS LOADED FROM OUR SERVER -->
 <script type="text/javascript">
 
-	// In this code, jQuery is used to "download" the data from our server
-	// We then dynamically display this content in our table. This is very similar to the group projects you just completed.
-	// It's also very similar to the NYT search application. In fact, I copied a ton of code from there.
-
 	function runTableQuery(){
-
-		// Here we get the location of the root page.
-		// We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
 		var currentURL = window.location.origin;
 
-		// The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
 		$.ajax({url: currentURL + "/api/tables", method: "GET"})
 			.done(function(tableData) {
-
+					$("#tableSection").empty();
+					$("#waitlistSection").empty();
 				// Loop through and display each of the customers
 				for (var i=0; i<tableData.length && i < 5; i++){
 
@@ -92,9 +83,10 @@
 					var tableNumber = i + 1;
 
 					// Then display the remaining fields in the HTML (Section Name, Date, URL)
-					$("#tableWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> " + tableData[i].name + "</h2>");
-				}
+					$("#tableWell-"+ i+1).append('<h2><button id="' + i + '" class="label label-danger clearReservation">X</button> <span class="label label-primary">' + tableNumber + "</span> " + tableData[i].name + "</h2>");
 
+				}
+				
 				if (tableData.length > 4) {
 					runWaitListQuery(tableData);
 				}
@@ -104,7 +96,7 @@
 	function runWaitListQuery(tableData){
 
 				// Loop through and display each of the customers
-				for (var i=5; i<tableData.length; i++){
+				for (var i=5; i < tableData.length; i++){
 
 					// Create the HTML Well (Section) and Add the table content for each reserved table
 					var waitlistSection = $("<div>");
@@ -121,15 +113,33 @@
 
 	// This function resets all of the data in our tables. This is intended to let you restart a demo.
 	function clearTable(){
-
+		console.log("clearing table");
 		var currentURL = window.location.origin;
 		$.ajax({url: currentURL + "/api/clear", method: "POST"})
 
 	}
 
+$(document).on('click', ".clearReservation", function(){
+	var idToDelete = $(this).attr("id");
+
+	var killObject = {"id": idToDelete};
+	var currentURL = window.location.origin;
+
+	$.ajax({
+	  method: "POST",
+	  url: currentURL + "/api/killreservation",
+	  data: {"id": idToDelete}
+	})
+	  .done(function( tables ) {
+	  	$(this).remove();
+	  	console.log(tables);
+	  	runTableQuery();
+	  });
+})
+
+
 	$("#clear").on('click', function(){
 		clearTable();
-
 		// Refresh the page after data is cleared
 		location.reload();
 	})
@@ -138,7 +148,6 @@
 	// Run Queries!
 	// ==========================================
 	runTableQuery();
-	runWaitListQuery();
 
 
 </script>

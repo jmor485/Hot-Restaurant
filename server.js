@@ -50,15 +50,15 @@ var tables = [
   phone: "9999999999",
   email: "tomtom@tomtom.com",
   customerID: 3},
-  {name: "tom",
+  {name: "tom2",
   phone: "1234567890",
   email: "tom@tom.com",
   customerID: 1},
-  {name: "matt",
+  {name: "matt2",
   phone: "1555567890",
   email: "matt@matt.com",
   customerID: 2},
-  {name: "tomtom",
+  {name: "tomtom2",
   phone: "9999999999",
   email: "tomtom@tomtom.com",
   customerID: 3}
@@ -81,6 +81,14 @@ app.post('/api/clear', function (req, res) {
   console.log('clear all tables');
   tables = [];
   res.sendFile(path.join(__dirname, 'app/public/tables.html'));
+});
+
+app.post('/api/killreservation', function (req, res) {
+  console.log(req.body.id);
+
+  tables.splice(req.body.id, 1);
+  // console.log(tables);
+  res.json(tables);
 });
 
 
