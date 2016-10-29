@@ -37,15 +37,21 @@ app.get('/reserve', function (req, res) {
 
 
 
+var tables = [
+  {name: "tom",
+  phone: "1234567890",
+  email: "tom@tom.com",
+  unique_ID: 1}
+  ];
 
-
-app.get('api/tables', function (req, res) {
-		console.log('table data requested');
-	res.sendFile(path.join(__dirname, 'tables.html'));
+app.get('/api/tables', function (req, res) {
+  console.log('table data requested');
+  var response = "testing";
+  res.json(tables);
 });
 
 // reserve API call
-app.post('api/reserve', function (req, res) {
+app.post('/api/reserve', function (req, res) {
 	console.log('reserve request submitted');
 	console.log(req);
 });
