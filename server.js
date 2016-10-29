@@ -49,7 +49,6 @@ var tables = [
   {name: "tomtom",
   phone: "9999999999",
   email: "tomtom@tomtom.com",
-<<<<<<< HEAD
   customerID: 3},
   {name: "tom2",
   phone: "1234567890",
