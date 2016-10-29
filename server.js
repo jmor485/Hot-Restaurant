@@ -37,17 +37,41 @@ app.get('/reserve', function (req, res) {
 
 
 
+var tables = [
+  {name: "tom",
+  phone: "1234567890",
+  email: "tom@tom.com",
+  customerID: 1},
+  {name: "matt",
+  phone: "1555567890",
+  email: "matt@matt.com",
+  customerID: 2},
+  {name: "tomtom",
+  phone: "9999999999",
+  email: "tomtom@tomtom.com",
+  customerID: 3}
+  ];
 
-
-app.get('api/tables', function (req, res) {
-		console.log('table data requested');
-	res.sendFile(path.join(__dirname, 'tables.html'));
+app.get('/api/tables', function (req, res) {
+  // console.log('table data requested');
+  // var response = "testing";
+  res.json(tables);
 });
 
 // reserve API call
-app.post('api/reserve', function (req, res) {
+app.post('/api/reserve', function (req, res) {
 	console.log('reserve request submitted');
-	console.log(req);
+	console.log(req.body);
+
+  var newReservation = req.body;
+
+  tables.push(newReservation)
+
+  console.log(tables);
+
+  res.json(newReservation);
+
+
 });
 
 // Starts the server to begin listening
