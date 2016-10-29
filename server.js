@@ -21,20 +21,76 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 // Basic route that sends the user first to the AJAX Page
 app.get('/', function (req, res) {
-	console.log('home access requested');
-	res.sendFile(path.join(__dirname, 'app/public/survey.html'));
+	console.log('home page requested');
+	res.sendFile(path.join(__dirname, 'app/public/index.html'));
 });
 
-app.get('api/tables', function (req, res) {
-		console.log('table data requested');
-	res.sendFile(path.join(__dirname, 'allchar.html'));
+app.get('/tables', function (req, res) {
+  console.log('tables page requested');
+  res.sendFile(path.join(__dirname, 'app/public/tables.html'));
+});
+
+app.get('/reserve', function (req, res) {
+  console.log('reserve page requested');
+  res.sendFile(path.join(__dirname, 'app/public/reserve.html'));
+});
+
+
+
+var tables = [
+  {name: "tom",
+  phone: "1234567890",
+  email: "tom@tom.com",
+  customerID: 1},
+  {name: "matt",
+  phone: "1555567890",
+  email: "matt@matt.com",
+  customerID: 2},
+  {name: "tomtom",
+  phone: "9999999999",
+  email: "tomtom@tomtom.com",
+  customerID: 3},
+  {name: "tom2",
+  phone: "1234567890",
+  email: "tom@tom.com",
+  customerID: 1},
+  {name: "matt2",
+  phone: "1555567890",
+  email: "matt@matt.com",
+  customerID: 2},
+  {name: "tomtom2",
+  phone: "9999999999",
+  email: "tomtom@tomtom.com",
+  customerID: 3}
+  ];
+
+app.get('/api/tables', function (req, res) {
+  // console.log('table data requested');
+  // var response = "testing";
+  res.json(tables);
 });
 
 // reserve API call
-app.post('api/reserve', function (req, res) {
+app.post('/api/reserve', function (req, res) {
 	console.log('reserve request submitted');
 	console.log(req);
 });
+
+
+app.post('/api/clear', function (req, res) {
+  console.log('clear all tables');
+  tables = [];
+  res.sendFile(path.join(__dirname, 'app/public/tables.html'));
+});
+
+app.post('/api/killreservation', function (req, res) {
+  console.log(req.body.id);
+
+  tables.splice(req.body.id, 1);
+  // console.log(tables);
+  res.json(tables);
+});
+
 
 // Starts the server to begin listening
 // =============================================================
