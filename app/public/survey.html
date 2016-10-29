@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Survey</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="http://bootswatch.com/lumen/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="app/public/styles.css">
+</head>
+
+<body>
+<div class="container">
+	<div class="page-header">
+	  <h1>Fill out the form below to find your best matches.</h1>
+	</div>
+
+	<div>
+	  <p class="textlabel">Name (required)</p>
+	  <input type="text" id="fullName">
+	  <p class="textlabel">Link to Photo (required)</p>
+	  <input type="text" id="profilePic">
+
+	  <h3 class="questionLabels">Question 1:</h3>
+	  <p class='question'>I really want to see the Chicago Cubs win the World Series.</p>
+
+	    <select id="cubs">
+			<option value="0">Select</option>
+			<option value="1">1 - Disagree Completely</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5 - Agree Completely</option>
+		</select>
+
+		  <h3 class="questionLabels">Question 2</h3>
+		  <p class='question'>This Sunday, we should totally go rock climbing.</p>
+
+	    <select id="climbing">
+			<option value="0">Select</option>
+			<option value="1">1 - Disagree Completely</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5 - Agree Completely</option>
+		</select>
+
+		<h3 class="questionLabels">Question 3</h3>
+		<p class='question'>It really is better to give than receive.</p>
+
+	    <select id="giving">
+			<option value="0">Select</option>
+			<option value="1">1 - Disagree Completely</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5 - Agree Completely</option>
+		</select>
+
+		<h3 class="questionLabels">Question 4</h3>
+		<p class='question'>The best revenge is living well.</p>
+
+	    <select id="revenge">
+			<option value="0">Select</option>
+			<option value="1">1 - Disagree Completely</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5 - Agree Completely</option>
+		</select>
+
+		<h3 class="questionLabels">Question 5</h3>
+		<p class='question'>Twitter is the place I go for all of my financial advice.</p>
+
+	    <select id="financial">
+			<option value="0">Select</option>
+			<option value="1">1 - Disagree Completely</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5 - Agree Completely</option>
+		</select>
+
+		<h3 class="questionLabels">Question 6</h3>
+		<p class='question'>I enjoy listening to 'Butterfly' by Crazy Town a few times a month.</p>
+
+	    <select id="butterfly">
+			<option value="0">Select</option>
+			<option value="1">1 - Disagree Completely</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5 - Agree Completely</option>
+		</select>
+
+		<h3 class="questionLabels">Question 7</h3>
+		<p class='question'>If someone spoils something I'm watching they are dead to me.</p>
+
+	    <select id="spoilers">
+			<option value="0">Select</option>
+			<option value="1">1 - Disagree Completely</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5 - Agree Completely</option>
+		</select>
+
+		<h3 class="questionLabels">Question 8</h3>
+		<p class='question'>Halloween is only worthwhile if you go to the houses with full sized candy bars.</p>
+
+	    <select id="halloween">
+			<option value="0">Select</option>
+			<option value="1">1 - Disagree Completely</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5 - Agree Completely</option>
+		</select>
+
+		<h3 class="questionLabels">Question 9</h3>
+		<p class='question'>There's nothing wrong with playing beer pong after the age of 30.</p>
+
+	    <select id="beerpong">
+			<option value="0">Select</option>
+			<option value="1">1 - Disagree Completely</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5 - Agree Completely</option>
+		</select>
+
+		<h3 class="questionLabels">Question 10</h3>
+		<p class='question'>Crossfit looks like fun.</p>
+
+	    <select id="exercise">
+			<option value="0">Select</option>
+			<option value="1">1 - Disagree Completely</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5 - Agree Completely</option>
+		</select>
+	</div>
+		
+	<div class="btn-group">
+  		<button id="submitButton" class="btn btn-primary btn-lg btn-block" type="button">Submit</button>
+	</div>
+
+</div>
+	
+
+	<script type="text/javascript">
+		$('#submitButton').on('click', function() {
+
+			var userData = {
+				name: $('#fullName').val().trim(),
+				photo: $('#profilePic').val().trim(),
+				Scores: [
+					$('#cubs').val(),
+					$('#climbing').val(),
+					$('#giving').val(),
+					$('#revenge').val(),
+					$('#financial').val(),
+					$('#butterfly').val(),
+					$('#spoilers').val(),
+					$('#halloween').val(),
+					$('#beerpong').val(),
+					$('#exercise').val()]
+			};
+
+			$.post('http://localhost:3000/add', userData)
+				.done(function (data) {
+					console.log(data);
+					alert('Adding character...');
+				});
+
+			return false;
+		});
+	</script>
+
+</body>
+</html>

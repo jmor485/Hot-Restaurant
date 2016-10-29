@@ -1,0 +1,26 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "take in form data & compare users",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tomcariello/FriendFinder.git"
+  },
+  "author": "Tom Cariello",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tomcariello/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/Tomcariello/FriendFinder#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "path": "^0.12.7"
+  },
+  "keywords": []
+}
