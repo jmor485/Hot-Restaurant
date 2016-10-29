@@ -41,12 +41,20 @@ var tables = [
   {name: "tom",
   phone: "1234567890",
   email: "tom@tom.com",
-  unique_ID: 1}
+  customerID: 1},
+  {name: "matt",
+  phone: "1555567890",
+  email: "matt@matt.com",
+  customerID: 2},
+  {name: "tomtom",
+  phone: "9999999999",
+  email: "tomtom@tomtom.com",
+  customerID: 3}
   ];
 
 app.get('/api/tables', function (req, res) {
-  console.log('table data requested');
-  var response = "testing";
+  // console.log('table data requested');
+  // var response = "testing";
   res.json(tables);
 });
 
